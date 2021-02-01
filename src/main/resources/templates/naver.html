@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Lotte world tower</title>
+<script type="text/javascript"
+	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ypwsn9cpj0"></script>
+<script src="/webjars/jquery/3.5.1/jqery.min.js"></script>
+</head>
+<body>
+	<h1>Lotte World Tower</h1>
+	<ul>
+		<li>Address: 300, Olympic-ro, Songpa-gu, Seoul, Republic of Korea</li>
+	</ul>
+	<div id="map" style="width: 100%; height: 400px;"></div>
+	<script>
+		// location of Lotte World Tower
+		var map = new naver.maps.Map('map', {
+			center : new naver.maps.LatLng(37.5125, 127.102555), //coordinates of Lotte World Tower
+			zoom : 15, //Default zoom level
+			minZoom : 7, //minimum zoom level
+			zoomControl : true, //sho control
+			zoomControlOptions : {
+				position : naver.maps.Position.TOP_RIGHT
+			}
+		});
+
+		// Create Marker
+		var marker = new naver.maps.Marker({
+			position : new naver.maps.LatLng(37.5125, 127.102555),
+			map : map
+		});
+		
+		// Marker moves on click
+		naver.maps.Event.addListener(map, 'click', function(e) {
+		    marker.setPosition(e.latlng);
+		});
+	</script>
+
+</body>
+</html>
