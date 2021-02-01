@@ -12,13 +12,15 @@
 		<li>Address: 300, Olympic-ro, Songpa-gu, Seoul, Republic of Korea</li>
 	</ul>
 	<div id="map" style="width: 100%; height: 400px;"></div>
+	
+	<!-- Basic 
 	<script>
 		// location of Lotte World Tower
 		var map = new naver.maps.Map('map', {
 			center : new naver.maps.LatLng(37.5125, 127.102555), //coordinates of Lotte World Tower
 			zoom : 15, //Default zoom level
 			minZoom : 7, //minimum zoom level
-			zoomControl : true, //sho control
+			zoomControl : true, //show control
 			zoomControlOptions : {
 				position : naver.maps.Position.TOP_RIGHT
 			}
@@ -34,6 +36,52 @@
 		naver.maps.Event.addListener(map, 'click', function(e) {
 		    marker.setPosition(e.latlng);
 		});
+	</script>-->
+	
+	<script>
+	var HOME_PATH = window.HOME_PATH || '.';
+
+	var lotteWorldTower = new naver.maps.LatLng(37.5125, 127.102555),
+	    map = new naver.maps.Map('map', {
+	        center: lotteWorldTower.destinationPoint(0, 500),
+	        zoom: 15
+	    }),
+	    marker = new naver.maps.Marker({
+	        map: map,
+	        position: lotteWorldTower
+	    });
+
+	var contentString = [
+	        '<div class="iw_inner">',
+	        '   <h5>Lotte World Tower</h5>',
+	        '   <p>Address: 300, Olympic-ro, Songpa-gu, Seoul, Republic of Korea<br />',
+	        '       <a href="https://www.lwt.co.kr/main/main.do" target="_blank">Website</a>',
+	        '   </p>',
+	        '</div>'
+	    ].join('');
+
+	var infowindow = new naver.maps.InfoWindow({
+	    content: contentString,
+	    maxWidth: 200,
+	    backgroundColor: "#eee",
+	    borderWidth: 2,
+	    fontSize:10,
+	    anchorSize: new naver.maps.Size(30, 30),
+	    anchorSkew: true,
+	    anchorColor: "#eee",
+
+	    pixelOffset: new naver.maps.Point(20, -20)
+	});
+
+	naver.maps.Event.addListener(marker, "click", function(e) {
+	    if (infowindow.getMap()) {
+	        infowindow.close();
+	    } else {
+	        infowindow.open(map, marker);
+	    }
+	});
+
+	infowindow.open(map, marker);
 	</script>
 
 </body>
