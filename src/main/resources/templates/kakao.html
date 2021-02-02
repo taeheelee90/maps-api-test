@@ -3,7 +3,7 @@
 <head>
 <title>Lotte world tower</title>
 <script type="text/javascript"
-	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ypwsn9cpj0"></script>
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d7afdf4d5be7eee36b5fe75a3710658c"></script>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -54,53 +54,36 @@
 	</div>
 
 	<script>
-		// Select location 
-		var lotteWorldTower = new naver.maps.LatLng(37.5125, 127.102555), map = new naver.maps.Map(
-				'map', {
-					center : lotteWorldTower.destinationPoint(0, 500),
-					zoom : 15, //Default zoom level
-					minZoom : 7, //minimum zoom level
-					zoomControl : true, //show control
-					zoomControlOptions : {
-						position : naver.maps.Position.TOP_RIGHT
-					}
-				}),
-		// Set Marker
-		marker = new naver.maps.Marker({
-			map : map,
-			position : lotteWorldTower
+		var mapContainer = document.getElementById('map'), mapOption = {
+			center : new kakao.maps.LatLng(37.5125, 127.102555), // coordinates of location
+			level : 3
+		// zoom level
+		};
+
+		var map = new kakao.maps.Map(mapContainer, mapOption);
+
+		// Marker's location
+		var markerPosition = new kakao.maps.LatLng(37.5125, 127.102555);
+
+		// Craete marker
+		var marker = new kakao.maps.Marker({
+			position : markerPosition
 		});
 
-		// Set information window
-		var contentString = [
-				'<div class="iw_inner">',
-				'   <h5>Lotte World Tower</h5>',
-				'	<hr>',
-				'   <p>300, Olympic-ro, Songpa-gu, Seoul, Korea<br />',
-				'       <a href="https://www.lwt.co.kr/main/main.do" target="_blank">Website</a>',
-				'   </p>', '</div>' ].join('');
+		// Marker will be shon on the map
+		marker.setMap(map);
 
-		// Style information window
-		var infowindow = new naver.maps.InfoWindow({
-			content : contentString,
+		var iwContent = '<div style="padding:5px;"><p>Lotte World Tower  <br><a href="https://www.lwt.co.kr/main/main.do" target="_blank">Website</a> <a href="https://map.kakao.com/link/to/Lotte World Tower,37.5125, 127.102555" style="color:blue" target="_blank">Navigation</a></p></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+		iwPosition = new kakao.maps.LatLng(33.450701, 126.570667); //Infowindow's location
+
+		// Create infowindow
+		var infowindow = new kakao.maps.InfoWindow({
+			position : iwPosition,
+			content : iwContent,
 			maxWidth : 300,
-			backgroundColor : "#eee",
-			borderWidth : 2,
-			anchorSize : new naver.maps.Size(30, 30),
-			anchorSkew : true,
-			anchorColor : "#eee",
-			pixelOffset : new naver.maps.Point(20, -20)
 		});
 
-		// Onclick will make marker disapper
-		naver.maps.Event.addListener(marker, "click", function(e) {
-			if (infowindow.getMap()) {
-				infowindow.close();
-			} else {
-				infowindow.open(map, marker);
-			}
-		});
-
+		// Set infowindow on top of the marker.
 		infowindow.open(map, marker);
 	</script>
 </body>
