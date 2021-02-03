@@ -1,48 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Lotte world tower</title>
-<script type="text/javascript"
+	<div th:replace="fragments.html :: common-head"></div>
+	<script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d7afdf4d5be7eee36b5fe75a3710658c"></script>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-	crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css2?family=Heebo&display=swap"
-	rel="stylesheet">
 </head>
+
 <body style="font-family: 'Heebo', sans-serif;">
 	<div class="container">
-		<div class="row">
-			<div class="col-2"></div>
-			<div class="col-8">
-				<h1 style="text-align: center; margin-top: 30px;">Lotte World
-					Tower</h1>
-			</div>
-			<div class="col-2"></div>
-		</div>
-
-		<div class="row">
-			<div class="col-2"></div>
-			<div class="col-8">
-
-				<nav class="nav justify-content-end">
-					<a class="nav-link" href="http://localhost:8080">Main</a> <a
-						class="nav-link" href="http://localhost:8080/naver">Naver</a> <a
-						class="nav-link" href="http://localhost:8080/kakao">Kakao</a> <a
-						class="nav-link" href="http://localhost:8080/Google">Google</a>
-				</nav>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-2"></div>
-			<div class="col-8">
-				<h3>Direction</h3>
-			</div>
-			<div class="col-2"></div>
-		</div>
+		<div th:replace="fragments.html :: title"></div>
+		<div th:replace="fragments.html :: navBar"></div>
+		<div th:replace="fragments.html :: direction"></div>
 
 		<div class="row">
 			<div class="col-2"></div>
@@ -51,6 +19,7 @@
 			</div>
 			<div class="col-2"></div>
 		</div>
+		<div th:replace="fragments.html :: footer"></div>
 	</div>
 
 	<script>

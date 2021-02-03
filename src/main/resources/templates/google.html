@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<div th:replace="fragments.html :: common-head"></div>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBC4rnqT9qpJxK5agFW98VF4AGClfs-o_U&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+ <script>
+      // Initialize and add the map
+      function initMap() {
+        // The location of Uluru
+        const lotteWorldTower = { lat: 37.5125, lng: 127.102555 };
+        // The map, centered at Uluru
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 15,
+          center: lotteWorldTower,
+        });
+        // Info Window
+        const contentString =
+            '<p>Lotte World Tower  <br>' +
+            '<a href="https://www.lwt.co.kr/main/main.do" target="_blank">Website</a>' +
+            "</p>";
+          const infowindow = new google.maps.InfoWindow({
+            content: contentString,
+          });
+          const marker = new google.maps.Marker({
+            position: lotteWorldTower,
+            map,
+            title: "Lotte World Tower",
+          });
+          marker.addListener("click", () => {
+            infowindow.open(map, marker);
+          });
+        }
+    </script>
+	
+</head>
+
+<body style="font-family: 'Heebo', sans-serif;">
+	<div class="container">
+		<div th:replace="fragments.html :: title"></div>
+		<div th:replace="fragments.html :: navBar"></div>
+		<div th:replace="fragments.html :: direction"></div>
+
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8">
+				<div id="map"style="width: 100%; height: 400px;"></div>
+			</div>
+			<div class="col-2"></div>
+		</div>
+		<div th:replace="fragments.html :: footer"></div>
+	</div>
+
+	
+</body>
+</html>

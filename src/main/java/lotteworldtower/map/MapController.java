@@ -20,4 +20,9 @@ public class MapController {
 	public String kakaoMap() {
 		return "kakao";
 	}
+	
+	@GetMapping("/google")
+	public String googleMap() {
+		return "google";
+	}
 }
