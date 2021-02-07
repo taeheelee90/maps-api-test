@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<div th:replace="fragments.html :: common-head"></div>
-	<script type="text/javascript"
+<div th:replace="fragments.html :: common-head"></div>
+<script type="text/javascript"
 	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ypwsn9cpj0"></script>
 </head>
 <body style="font-family: 'Heebo', sans-serif;">
 	<div class="container">
 		<div th:replace="fragments.html :: title"></div>
 		<div th:replace="fragments.html :: navBar"></div>
-		<div th:replace="fragments.html :: direction"></div>
-
+		<div th:replace="fragments.html :: address"></div>
+		<div th:replace="fragments.html :: dynamicMap"></div>
+		<hr>
 		<div class="row">
 			<div class="col-2"></div>
 			<div class="col-8">
-				<div id="map" style="width: 100%; height: 400px;"></div>
+				<h5>Search direction</h5>
+				<a
+					href="https://map.naver.com/v5/directions/-/14148987.13702489,4510794.895984188,%EC%84%9C%EC%9A%B8%EC%8A%A4%EC%B9%B4%EC%9D%B4%20(%EC%A0%9C2%EB%A1%AF%EB%8D%B0%EC%9B%94%EB%93%9C),303218356,PLACE_POI/-/transit?c=14148519.0164860,4510795.0707930,15,0,0,0,dh"
+					target="_blank">Direction</a>
 			</div>
 			<div class="col-2"></div>
 		</div>
@@ -42,9 +46,8 @@
 		// Set information window
 		var contentString = [
 				'<div class="iw_inner">',
-				'   <h5>Lotte World Tower</h5>',
-				'       <a href="https://www.lwt.co.kr/main/main.do" target="_blank">Website</a>',
-				'   </p>', '</div>' ].join('');
+				'   <p>Lotte World Tower</p>',
+				'   </div>' ].join('');
 
 		// Style information window
 		var infowindow = new naver.maps.InfoWindow({

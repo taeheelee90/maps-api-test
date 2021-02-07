@@ -10,12 +10,16 @@
 	<div class="container">
 		<div th:replace="fragments.html :: title"></div>
 		<div th:replace="fragments.html :: navBar"></div>
-		<div th:replace="fragments.html :: direction"></div>
+		<div th:replace="fragments.html :: address"></div>
+		<div th:replace="fragments.html :: dynamicMap"></div>
+		<hr>
 
 		<div class="row">
 			<div class="col-2"></div>
 			<div class="col-8">
-				<div id="map" style="width: 100%; height: 400px;"></div>
+				<h5>Search direction</h5>
+				<a href="https://map.kakao.com/link/to/Lotte World Tower,37.5125, 127.102555"
+					target="_blank">Direction</a>
 			</div>
 			<div class="col-2"></div>
 		</div>
@@ -42,14 +46,16 @@
 		// Marker will be shon on the map
 		marker.setMap(map);
 
-		var iwContent = '<div style="padding:5px;"><p>Lotte World Tower  <br><a href="https://www.lwt.co.kr/main/main.do" target="_blank">Website</a> <a href="https://map.kakao.com/link/to/Lotte World Tower,37.5125, 127.102555" style="color:blue" target="_blank">Navigation</a></p></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-		iwPosition = new kakao.maps.LatLng(33.450701, 126.570667); //Infowindow's location
+		var iwContent = '<div style="padding:5px;"><p>Lotte World Tower</p></div>', // Infowindow's contents
+			iwPosition = new kakao.maps.LatLng(33.450701, 126.570667); //Infowindow's location
+			iwRemoveable = true; //Infowindow close button
 
 		// Create infowindow
 		var infowindow = new kakao.maps.InfoWindow({
 			position : iwPosition,
 			content : iwContent,
 			maxWidth : 300,
+			removable : iwRemoveable
 		});
 
 		// Set infowindow on top of the marker.
